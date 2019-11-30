@@ -14,6 +14,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function random(int $iterations): int
+    {
+        $random = 0;
+        for ($i = 0; $i < $iterations; $i ++) {
+            $random = random_int(0, 999999);
+        }
+
+        return $random;
+    }
+
     public function index(): JsonResponse
     {
         /**
@@ -24,7 +34,7 @@ class Controller extends BaseController
          */
         return new JsonResponse(
             [
-                'rand' => [random_int(0, 999999), random_int(0, 999999), random_int(0, 999999)][random_int(0, 2)],
+                'rand' => $this->random(500000),
                 'env' => env('APP_ENV', 'production'),
                 'type' => env('APP_TYPE', 'unknown'),
                 'pid' => getmypid(),
