@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => env('LOG_CHANNEL', 'stderr'),
 
     /*
     |--------------------------------------------------------------------------
@@ -97,4 +97,10 @@ return [
         ],
     ],
 
+    'http' => [
+        'headers' => env('LOG_HTTP_HEADERS', false),
+        'response' => env('LOG_HTTP_RESPONSE', true),
+        'response_content' => env('LOG_HTTP_RESPONSE_CONTENT', false),
+        'request' => env('LOG_HTTP_REQUEST', true)
+    ]
 ];

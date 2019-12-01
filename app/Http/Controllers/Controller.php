@@ -34,7 +34,7 @@ class Controller extends BaseController
          */
         return new JsonResponse(
             [
-                'rand' => $this->random(500000),
+                'rand' => $this->random(5500000),
                 'env' => env('APP_ENV', 'production'),
                 'type' => env('APP_TYPE', 'unknown'),
                 'pid' => getmypid(),
