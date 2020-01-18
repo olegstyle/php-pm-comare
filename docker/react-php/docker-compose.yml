@@ -3,7 +3,6 @@ version: '3.7'
 services:
   nginx:
     image: nginx:latest
-    restart: always
     ports:
       - ${NGINX_PORT-8001}:80
     volumes:
@@ -20,7 +19,6 @@ services:
     build:
       context: .
       dockerfile: ../images/php-cli/Dockerfile
-    restart: always
     working_dir: /app
     expose:
       - 9000

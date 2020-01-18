@@ -1,10 +1,9 @@
 FROM php:7.3-cli-buster
 
 RUN apt-get update && apt-get install -y \
-        libmcrypt-dev \
-        zlib1g-dev \
-        libicu-dev \
-        libzip-dev
+        libmcrypt-dev zlib1g-dev libicu-dev libzip-dev \
+        autoconf file build-essential apt-transport-https software-properties-common autotools-dev libtool m4 \
+        vim automake git
 
 RUN docker-php-ext-install \
         intl \
