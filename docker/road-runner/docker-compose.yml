@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - ${NGINX_PORT-8002}:80
+    volumes:
+      - ../global-files/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/app.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - road-runner
+      - php
+    ulimits:
+      nproc: 819200
+      nofile: 819200
+
+  road-runner:
+    build:
+      context: .
+      dockerfile: ../images/road-runner/Dockerfile
+    working_dir: /roadrunner
+    environment:
+      APP_ENV: prod
+      APP_TYPE: road-runner
+    volumes:
+      - ../../:/app:cached
+    expose:
+      - 9000
+
+  php:
+    build:
+      context: .
+      dockerfile: ../images/php-cli/Dockerfile
+    working_dir: /app
+    environment:
+      APP_ENV: production
+      APP_TYPE: road-runner
+    volumes:
+      - ../../:/app:cached
+    command: php /app/bin/react-worker.php

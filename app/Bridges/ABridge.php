@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Log\LogManager;
+use Psr\Http\Message\ServerRequestInterface;
 use ReflectionObject;
 use Illuminate\Foundation\Bootstrap\SetRequestForConsole;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,5 +82,36 @@ abstract class ABridge implements IBridge
 
             return new Response('', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function castPsrRequest(ServerRequestInterface $request): Request
+    {
+        $method  = $request->getMethod();
+        $headers = $request->getHeaders();
+        $content = $request->getBody();
+        $post    = [];
+        if (isset($headers['Content-Type']) &&
+            strpos($headers['Content-Type'], 'application/x-www-form-urlencoded') === 0 &&
+            in_array(strtoupper($method), ['POST', 'PUT', 'DELETE', 'PATCH'])
+        ) {
+            parse_str($content, $post);
+        }
+        $sfRequest = new Request(
+            $request->getQueryParams(),
+            $post,
+            [],
+            $request->getCookieParams(),
+            $request->getUploadedFiles(),
+            [],
+            $content
+        );
+        $sfRequest->setMethod($method);
+        $sfRequest->headers->replace($headers);
+        $sfRequest->server->set('REQUEST_URI', (string) $request->getUri());
+        if (isset($headers['Host'])) {
+            $sfRequest->server->set('SERVER_NAME', current($headers['Host']));
+        }
+
+        return $sfRequest;
     }
 }
