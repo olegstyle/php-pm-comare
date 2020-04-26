@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0659cf94d699a88a5a90bc7c7bd1e64",
+    "content-hash": "5ebf53232a791fa1a6f1f10d1415f7dd",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -463,6 +463,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -509,6 +510,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -3869,6 +3871,49 @@
             "time": "2019-10-21T16:45:58+00:00"
         },
         {
+            "name": "eaglewu/swoole-ide-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wudi/swoole-ide-helper.git",
+                "reference": "0f9ce52f83f9eba6ba00d5d17b964ab3e5e41e5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wudi/swoole-ide-helper/zipball/0f9ce52f83f9eba6ba00d5d17b964ab3e5e41e5a",
+                "reference": "0f9ce52f83f9eba6ba00d5d17b964ab3e5e41e5a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "eagle",
+                    "email": "eaglewudi@gmail.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "Swoole IDE Helper, to improve auto-completion",
+            "keywords": [
+                "autocomplete",
+                "codeintel",
+                "helper",
+                "ide",
+                "netbeans",
+                "phpdoc",
+                "phpstorm",
+                "sublime",
+                "swoole"
+            ],
+            "time": "2020-04-26T05:43:34+00:00"
+        },
+        {
             "name": "facade/flare-client-php",
             "version": "1.3.0",
             "source": {
@@ -6014,6 +6059,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "eaglewu/swoole-ide-helper": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

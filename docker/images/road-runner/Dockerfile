@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 RUN usermod -u 1000 www-data
 
 COPY --from=build /roadrunner/rr /roadrunner/rr
-COPY ./php.ini /usr/local/etc/php/php.ini
+COPY ./../../global-files/php.ini /usr/local/etc/php/php.ini
 COPY ./.rr.yaml /roadrunner
 
 EXPOSE 9000

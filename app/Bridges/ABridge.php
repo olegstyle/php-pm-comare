@@ -8,7 +8,9 @@ use App\Exceptions\Handler;
 use Exception;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request as IlluminateRequest;
 use Illuminate\Log\LogManager;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionObject;
 use Illuminate\Foundation\Bootstrap\SetRequestForConsole;
@@ -57,7 +59,9 @@ abstract class ABridge implements IBridge
 
     public function handleRequest(Request $baseRequest): Response
     {
-        $request = RequestFacade::createFromBase($baseRequest);
+        $request = $baseRequest instanceof IlluminateRequest ?
+            $baseRequest :
+            RequestFacade::createFromBase($baseRequest);
 
         try {
             $kernel = $this->app->make(Kernel::class);
@@ -91,7 +95,10 @@ abstract class ABridge implements IBridge
         $content = $request->getBody();
         $post    = [];
         if (isset($headers['Content-Type']) &&
-            strpos($headers['Content-Type'], 'application/x-www-form-urlencoded') === 0 &&
+            strpos(
+                is_array($headers['Content-Type']) ? Arr::first($headers['Content-Type']) : $headers['Content-Type'],
+                'application/x-www-form-urlencoded'
+            ) === 0 &&
             in_array(strtoupper($method), ['POST', 'PUT', 'DELETE', 'PATCH'])
         ) {
             parse_str($content, $post);
