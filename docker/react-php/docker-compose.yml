@@ -27,4 +27,5 @@ services:
       APP_TYPE: react-php
     volumes:
       - ../../:/app:cached
+      - ../global-files/php.ini:/usr/local/etc/php/php.ini
     command: php /app/bin/react-worker.php

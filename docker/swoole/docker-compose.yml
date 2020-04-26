@@ -24,3 +24,4 @@ services:
       APP_TYPE: swoole
     volumes:
       - ../../:/app:cached
+      - ../global-files/php.ini:/usr/local/etc/php/php.ini
