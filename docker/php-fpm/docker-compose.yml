@@ -26,6 +26,6 @@ services:
       APP_ENV: production
       APP_TYPE: php-fpm
     volumes:
-      - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ../global-files/www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ../global-files/php.ini:/usr/local/etc/php/php.ini
       - ../../:/app:cached

@@ -1,29 +1,28 @@
-FROM php:7.3-cli-buster
+FROM php:7.4.5-cli-buster
 
 RUN apt-get update && apt-get install -y \
-        libmcrypt-dev zlib1g-dev libicu-dev libzip-dev \
+        libmcrypt-dev zlib1g-dev libicu-dev libzip-dev libonig-dev libssl-dev \
         autoconf file build-essential apt-transport-https software-properties-common autotools-dev libtool m4 \
-        vim automake git
-
-RUN docker-php-ext-install \
+        vim automake git openssl wget procps htop \
+    && docker-php-ext-install \
         intl \
         opcache \
         pcntl \
         iconv \
         mbstring \
         zip \
-        bcmath
-
-RUN docker-php-ext-enable \
+        bcmath \
+        sockets \
+    && docker-php-ext-enable \
         intl \
         opcache \
         pcntl \
         iconv \
         mbstring \
         zip \
-        bcmath
+        bcmath \
+        sockets
 
 RUN usermod -u 1000 www-data
 RUN mkdir /app
 RUN chown -R www-data:www-data /app
-

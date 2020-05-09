@@ -9,7 +9,7 @@ RUN cd /tmp && \
     mv "roadrunner-${ARG_VERSION}" /roadrunner && \
     cd /roadrunner && ls && make
 
-FROM php:7.4-cli
+FROM php:7.4.5-cli
 
 RUN apt-get update && apt-get install -y \
         libmcrypt-dev zlib1g-dev libicu-dev libzip-dev libonig-dev libssl-dev \
