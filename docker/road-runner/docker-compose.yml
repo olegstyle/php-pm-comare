@@ -25,3 +25,4 @@ services:
     volumes:
       - ../../:/app:cached
       - ../global-files/php.ini:/usr/local/etc/php/php.ini
+      - ./.rr.yaml:/roadrunner/.rr.yaml

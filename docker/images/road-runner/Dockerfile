@@ -37,7 +37,8 @@ RUN apt-get update && apt-get install -y \
 RUN usermod -u 1000 www-data
 
 COPY --from=build /roadrunner/rr /roadrunner/rr
-COPY ./.rr.yaml /roadrunner
+
+RUN touch /roadrunner/.rr.yaml
 
 EXPOSE 9000
 
