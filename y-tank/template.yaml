@@ -1,0 +1,15 @@
+phantom:
+    address: 64.225.37.135:{PORT}
+    load_profile:
+        load_type: rps
+        schedule: line(1, {COUNT}, 60s)
+    uris:
+      - "/json"
+console:
+  enabled: true
+telegraf:
+  enabled: false
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: 'overload_token.txt'
