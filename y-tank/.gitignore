@@ -2,3 +2,5 @@ tank_errors.log
 load.yaml
 logs
 overload_token.txt
+agent_*
+jobno_file.txt
