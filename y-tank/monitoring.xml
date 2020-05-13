@@ -1,0 +1,5 @@
+<Monitoring>
+    <Host address="64.225.37.135" interval="1" username="ytank">
+        <CPU/> <Kernel/> <Net/> <System/> <Memory/> <Disk/> <Netstat /> <Nstat/>
+    </Host>
+</Monitoring>

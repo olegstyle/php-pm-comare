@@ -1,14 +1,18 @@
 phantom:
     address: 64.225.37.135:{PORT}
     load_profile:
-        load_type: rps
-        schedule: line(1, {COUNT}, 60s)
+        load_type: rps # schedule load by defining requests per second
+        schedule: const({COUNT}, 60s) # makes constant load {COUNT}rps during 60 seconds
     uris:
       - "/json"
 console:
   enabled: true
 telegraf:
-  enabled: false
+  config: 'monitoring.xml'
+  enabled: true
+  kill_old: false
+  package: yandextank.plugins.Telegraf
+  ssh_timeout: 30s
 overload:
   enabled: true
   package: yandextank.plugins.DataUploader
