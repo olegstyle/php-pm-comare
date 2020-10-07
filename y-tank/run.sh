@@ -1,5 +1,5 @@
 port=8001
-rps=10
+rps=100
 
 [ -z "$1" ] && echo "Default port set: ${port}" || port=$1 && echo "Port set: ${port}"
 [ -z "$2" ] && echo "Default RPS set: ${rps}" || rps=$2 && echo "RPS set: ${rps}"
